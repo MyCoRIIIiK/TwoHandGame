@@ -12,6 +12,7 @@ db.sqlite3
 manage.py
 game/*
 TwoHandGame/*
+.idea/*
 manage.py
 db.sqlite3
 
