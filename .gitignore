@@ -5,14 +5,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-media/*
-out/*
+myvenv/
 venv/*
 db.sqlite3
-manage.py
-game/*
-TwoHandGame/*
-.idea/*
-manage.py
 db.sqlite3
 
