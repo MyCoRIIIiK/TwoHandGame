@@ -127,7 +127,8 @@ USE_TZ = True
 # DataFlair Static Files Settings
 
 STATIC_URL = '/static/'
-STATIC_DIR = (os.path.join(BASE_DIR,'static'))
+STATIC_DIR = None
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
