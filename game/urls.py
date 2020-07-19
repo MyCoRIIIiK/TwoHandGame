@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from TwoHandGame.settings import DEBUG, STATIC_URL, MEDIA_URL, MEDIA_ROOT,STATIC_ROOT
+from TwoHandGame.settings import DEBUG, STATIC_URL, MEDIA_URL, MEDIA_ROOT
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -13,7 +13,7 @@ urlpatterns = [
 
 
 if DEBUG:
-    urlpatterns += static(STATIC_URL, document_root = STATIC_ROOT)
+    # urlpatterns += static(STATIC_URL, document_root = STATIC_ROOT)
     urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
 
 

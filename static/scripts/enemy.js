@@ -12,6 +12,10 @@ class Enemy
     };
   }
 
+  addToArea() {
+    let currentEnemyStep = this.findDistance(this.pos.x, this.pos.y);
+    currentEnemyStep.classList.add("enemy");
+  }
 
   /**
    * Find distance using coordinates hero and enemy
@@ -190,7 +194,7 @@ class Enemy
    */
   move(targetCoordinates)
   {
-    this.clearField()
+    this.clearField();
     let direction = this.setDirection(targetCoordinates);
 
     switch (direction) // replace position 
@@ -218,7 +222,7 @@ class Enemy
 
 function getRandomHeroCoordinates()
 {
-  let coordinates = new Array();
+  let coordinates = [];
   if (Math.random() >= 0.5)
   {
     coordinates.push(firstHeroCoordinates[0]);
@@ -229,48 +233,32 @@ function getRandomHeroCoordinates()
     coordinates.push(secondHeroCoordinates[0]);
     coordinates.push(secondHeroCoordinates[1]);
   }
+  coordinates.push(firstHeroCoordinates[0]);
+  coordinates.push(firstHeroCoordinates[1]);
   return coordinates;
 }
 
+function randomInteger(min, max) {
+  // получить случайное число от (min-0.5) до (max+0.5)
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+
 /**
- * Get spawn coordinate to enemy in 3 field from hero
- * @memberof EnemyFunctions
+ * Get spawn coordinate to enemy in random field exepted hero field
  */
 function getSpawnCoordinates()
 {
   let currentCoordinates = getRandomHeroCoordinates();
+  let spawnCoordinates = [];
 
-  let random = Math.floor(Math.random() * 4);
-  switch (random)
-  {
-    case 0:
-      if (currentCoordinates[0] <= 26)
-        currentCoordinates[0] += 3;
-      else
-        currentCoordinates[0] -= 3;
-      break;
-    case 1:
-      if (currentCoordinates[0] >= 4)
-        currentCoordinates[0] -= 3;
-      else
-        currentCoordinates[0] += 3;
-      break;
-    case 2:
-      if (currentCoordinates[1] <= 26)
-        currentCoordinates[1] += 3;
-      else
-        currentCoordinates[1] -= 3;
-      break;
-    case 3:
-      if (currentCoordinates[1] >= 4)
-        currentCoordinates[1] -= 3;
-      else
-        currentCoordinates[1] += 3;
-      break;
-    default:
-      break;
+  do {
+    spawnCoordinates.push(randomInteger(1, 30));
+    spawnCoordinates.push(randomInteger(1, 30));
   }
-  return currentCoordinates;
+  while (currentCoordinates[0] == spawnCoordinates[0] && currentCoordinates[1] == spawnCoordinates[1]);
+  
+  return spawnCoordinates;
 }
 
 let enemiesList = []; //will be contain all enemies
