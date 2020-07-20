@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 
@@ -82,19 +82,22 @@ WSGI_APPLICATION = 'TwoHandGame.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'game',
-        'USER': 'forbz',
-        'PASSWORD': '7751876',
-        'HOST': 'localhost',
-        'PORT': '',
+try:
+    DATABASES = {
+        'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'game',
+            'USER': 'forbz',
+            'PASSWORD': '7751876',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
     }
-}
+except:
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
